@@ -1,0 +1,43 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title>Alarmas y avisos</title>
+{% endblock %}
+{% block contenido %}
+ <div class="col-sm-10">
+    <div class="col-sm-12"> 
+      <h2>Alarmas y avisos</h2>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#Reportes">Distribución</a></li>
+      <li><a data-toggle="tab" href="#Reportes">Materia prima</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="Reportes" class="tab-pane fade in active">
+      <div class="col-sm-12">
+      <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+      <Br>
+      <div class="table-responsive" style="height: 500px;">
+      <table id="example" class="table table-bordered table-striped">
+        <thead style="background:grey;color:white;">
+          <tr>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Motivo</th>
+            <th>nº Transporte</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+        {% for row in rows %}
+          <tr>
+            <td>{{ row[1] }}</td>
+            <td></td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+    </div></div>
+  </div>
+{% endblock %}

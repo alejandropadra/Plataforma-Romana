@@ -1,0 +1,49 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title></title>
+{% endblock %}
+{% block contenido %}
+  <div class="col-sm-10">
+        {% from "base/macro.html" import render_field %}
+        <form class="form-group" method="POST">
+          <h3>Registro de Coordinador o Acompañante</h3>
+          <div class="col-sm-4">
+            <div class="form-group">
+              {{ render_field(form.cedula, class ="form-control", placeholder="Cédula del coordinador") }}
+
+            </div>
+            <div class="form-group">
+              {{ render_field(form.nombre_apellido, class ="form-control",placeholder="Nombre y Apellido") }}
+            </div>
+          </div>
+          <div class="col-sm-4">
+             <div class="form-group">
+              {{ render_field(form.telefono, class ="form-control", placeholder="Número teléfonico") }}
+            </div>
+            <div class="form-group">
+              {{ render_field(form.transporte, class ="form-control", placeholder="Tranporte") }}
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              {{ render_field(form.direccion, class="form-control", placeholder="Dirección de habitacion") }}
+            </div>
+            <div class="form-group">
+              {{ render_field(form.seleccionar, class="form-control") }}
+            </div>
+            </br>
+            </br>
+          </div>
+          <div class="col-sm-4">
+            <a href="gestion-transporte" class="btn btn-default" role="button"><i class="fa fa-chevron-left"></i> Regresar</a>
+          </div>
+          <div class="col-sm-4">
+ 
+          </div>
+          <div class="col-sm-4">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="submit" value="REGISTRAR" class="btn btn-success btn-block">
+          </div>
+        </form>
+  </div>
+{% endblock %}

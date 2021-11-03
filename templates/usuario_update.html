@@ -1,0 +1,66 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title>Registro de usuario</title>
+{% endblock %}
+{% block contenido %}
+<div class="col-sm-10">
+  <div class="bocol-sm-2 well" style="border-radius: 5px;background-color: #f2f2f2;">
+    <h3 style="text-align: center;">FORMULARIO DE REGISTRO:</h3>
+    {% from "base/macro.html" import render_field %}
+    <form class="form-group" id= "RegistroForm" method="POST">
+      <div class="row">
+        <div class="col-sm-6 form-outline">
+          <div class="input-container">
+            <i class="fa fa-user icon"></i>
+            {{ render_field(form.nombre, class ="form-control",placeholder="Nombre de usuario", value = usuario[0]) }}
+            {{ render_field(form.apellido, class ="form-control",placeholder="Apellido de usuario", value = usuario[1]) }}
+          </div>
+        </div>
+        <div class="col-sm-6 form-group">
+          <div class="input-container">
+            <i class="fa fa-envelope icon"></i>
+            {{ render_field(form.email, class ="form-control",placeholder="Ingrese su correo electrónico", value = usuario[3]) }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <div class="input-container">
+            <i class="fa fa-address-card icon"></i>
+            {{ render_field(form.nacionalidad, class ="") }}
+            {{ render_field(form.cedula, class ="form-control",placeholder="Ingrese su numero de cédula", value = usuario[5]) }}
+          </div>
+        </div>
+        <div class="col-sm-6 form-group">
+          <div class="input-container">
+            <i class="fa fa-hashtag icon"></i>
+            {{ render_field(form.ficha, class ="form-control",placeholder="Ingrese su numero de ficha", value = usuario[2]) }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-sm-6 form-group">
+        <div class="input-container">
+ 
+
+      </div>
+      </div>
+      <div class="col-sm-6 form-group">
+              <div class="input-container">
+        <i class="fa fa-universal-access icon"></i>
+        {{ render_field(form.area_asignada, class ="form-control", value = usuario[4]) }}
+      </div>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col-sm-9 form-group">
+        <a href="configuracion" class="btn btn-default" role="button"><i class="fa fa-chevron-left"></i> REGRESAR</a>
+      </div>
+      <div class="col-sm-3 form-group">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="submit" value="ACTUALIZAR USUARIO" class="btn btn-success btn-block">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

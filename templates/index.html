@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inicio Sesion</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>
+  <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+  <script type="text/javascript" src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <link rel='icon' type='image/png' href="{{ url_for('static', filename = 'img/logo_romana.png') }}">
+<style>
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+body {
+  background-image: url("static/img/fondo_inicio.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+footer {
+  text-align: center;
+  padding: 3px;
+  font-family: 'Audiowide', cursive;"
+}
+</style>
+</head>
+<body >
+<div class="container">
+  <div class="row">
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+  </div>
+  <div class="container">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade in">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Warning!</strong> {{ message }}.
+        </div>
+      {% endfor %}  
+    {% endif %}
+  {% endwith %}
+</div>
+  <div class="row">
+    <div class="col-sm-7">
+      <h4 style="color:black; font-family: 'Audiowide', cursive;">DESDE 2021</h4>
+      <h1 style="color:white;font-size: 60px;text-align: center; font-family: 'Audiowide', cursive;">PLATAFORMA ROMANA</h1>
+    </div>  
+    <div class="col-sm-5" style="border-radius: 5px; background-color: rgba(255, 221, 98, 0.4);float:right;padding: 50px;">
+      <h3 style="color:white;">INTRODUZCA SUS DATOS</h3>
+      {% from "base/macro.html" import render_field %}
+      <form class="form-outline" method="POST">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+          {{ render_field(form.username, class ="form-control input-lg",placeholder="Nombre de usuario") }}
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+          {{ render_field(form.password, class ="form-control input-lg", placeholder="Contraseña") }}
+        </div>
+        {{ form.honeypot }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        </br>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success btn-lg btn-block" value="Ingresar"> INICIAR SESION</button>
+        </div>
+      </form>
+      <h4 style="text-align: right;"><a href="#"> ¿Olvido de usuario o contraseña?</a></h4>
+    </div>
+  </div>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+
+  <footer>
+  <p>Creando una mejor experiencia al usuario. Visualizando la Industria 4.0<br>
+  <a href="mailto:hege@example.com">Digitalizacion Industrial</a></p>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title>Prueba</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.get("demo_test.asp", function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+});
+</script>
+{% endblock %}
+{% block contenido %}
+  <div class="col-sm-10">
+      <h1>{{ numero }}</h1>
+  </div>
+
+
+{% endblock %}

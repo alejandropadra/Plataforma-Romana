@@ -1,0 +1,145 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title>{{ tittle }}</title>
+{% endblock %}
+{% block contenido %}
+  <div class="col-sm-10">
+    <div class="col-sm-12"> 
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#lista-conductores">LISTA DE CONDUCTORES</a></li>
+        <li><a data-toggle="tab" href="#lista-vehiculos">LISTA DE VEHÍCULOS</a></li>
+        <li><a data-toggle="tab" href="#lista-coordinadores">LISTA DE COORDINADORES Y ACOMPAÑANTES</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="lista-conductores" class="tab-pane fade in active">
+          <div class="col-sm-12">
+            </br>
+            <h4>LISTA DE CONDUCTORES</h4>
+            <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+            </br>
+            <div class="table-responsive" style="height: 500px;">
+              <table class="table table-bordered table-striped">
+                <thead style="background:grey;color:white;">
+                  <tr>
+                    <th style="vertical-align: middle;">Cédula</th>
+                    <th style="vertical-align: middle;">Nombre y Apellido</th>
+                    <th style="vertical-align: middle;">Teléfono</th>
+                    <th style="vertical-align: middle;">Transporte</th>
+                    <th style="vertical-align: middle;">Exp. Licencia</th>
+                    <th style="vertical-align: middle;">Exp. Cert. Salud</th>
+                  </tr>
+                </thead>
+                <tbody id="myTable">
+                {% for row in conductores %}
+                  <tr>
+                    <td><a href="conductor-{{ row[0] }}">{{ row[0] }}</a></td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div id="lista-vehiculos" class="tab-pane fade">
+          <div class="col-sm-12">
+            </br>
+            <h4>LISTA DE VEHíCULOS</h4>
+            <input class="form-control" id="myInput2" type="text" placeholder="Buscar..">
+            <Br>
+            <div class="table-responsive" style="height: 500px;">
+              <table class="table table-bordered table-striped">
+                <thead style="background:grey;color:white;">
+                  <tr>
+                    <th style="vertical-align: middle;">Placa</th>
+                    <th style="vertical-align: middle;">Marca</th>
+                    <th style="vertical-align: middle;">Modelo</th>
+                    <th style="vertical-align: middle;">Transporte</th>
+                    <th style="vertical-align: middle;">Clasificación</th>
+                  </tr>
+                </thead>
+                <tbody id="myTable2">
+                {% for row in vehiculos %}
+                  <tr>
+                    <td><a href="vehiculo-{{ row[0] }}">{{ row[0] }}</a></td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div id="lista-coordinadores" class="tab-pane fade">
+          <div class="col-sm-12">
+            </br>
+            <h4>LISTA DE COORDINADORES</h4>
+            <input class="form-control" id="myInput3" type="text" placeholder="Buscar..">
+            </br>
+            <div class="table-responsive" style="height: 500px;">
+              <table class="table table-bordered table-striped">
+                <thead style="background:grey;color:white;">
+                  <tr>
+                    <th style="vertical-align: middle;">Cédula</th>
+                    <th style="vertical-align: middle;">Nombre y Apellido</th>
+                    <th style="vertical-align: middle;">Teléfono</th>
+                    <th style="vertical-align: middle;">Transporte</th>
+                    <th style="vertical-align: middle;">Dirección</th>
+                    <th style="vertical-align: middle;">Tipo</th>
+                  </tr>
+                </thead>
+                <tbody id="myTable3">
+                {% for row in coordinadores %}
+                  <tr>
+                    <td><a href="coordinador-{{ row[0] }}">{{ row[0] }}</a></td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <a href="gestion-transporte" class="btn btn-default" role="button"><i class="fa fa-chevron-left"></i> Regresar</a>
+      </div>
+    </div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+$(document).ready(function(){
+  $("#myInput2").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable2 tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+$(document).ready(function(){
+  $("#myInput3").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable3 tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+{% endblock %}

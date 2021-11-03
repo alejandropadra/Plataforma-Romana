@@ -1,0 +1,63 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title>{{ tittle }}</title>
+{% endblock %}
+{% block contenido %}
+ <div class="col-sm-10">
+    <div class="col-sm-12"> 
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#lista-conductores">LISTA DE USUARIOS</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="lista-usuarios" class="tab-pane fade in active">
+            <div class="col-sm-12">
+            </br>
+            <h4>LISTA DE USUARIOS</h4>
+            <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+            </br>
+      <div class="table-responsive" style="height: 500px;">
+      <table class="table table-bordered table-striped">
+        <thead style="background:grey;color:white;">
+          <tr>
+            <th style="vertical-align: middle;">Cédula</th>
+            <th style="vertical-align: middle;">Nombre</th>
+            <th style="vertical-align: middle;">Apellido</th>
+            <th style="vertical-align: middle;">Ficha</th>
+            <th style="vertical-align: middle;">Correo</th>
+            <th style="vertical-align: middle;">Área</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+        {% for row in usuarios %}
+          <tr>
+            <td><a href="usuario-{{ row[4] }}">{{ row[4] }}</a></td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[7] }}</td>
+            <td>{{ row[8] }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <a href="configuracion" class="btn btn-default" role="button"><i class="fa fa-chevron-left"></i> Regresar</a>
+    </div>
+    </div>
+         </div>
+    </div>
+
+  </div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+</script>
+
+{% endblock %}

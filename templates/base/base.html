@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block titulo%}
+
+  {% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+  <link rel='icon' type='image/png' href="{{ url_for('static', filename = 'img/logo_romana.png') }}">
+  <style>
+    .crp {
+        width:150px;
+        padding: 10px;
+    }
+    .romana{
+        width:20px;
+        padding-top: 0px;
+
+    }    
+    *   {
+    box-sizing: border-box;
+    }
+
+    .box {
+      float: left;
+      width: 33.33%;
+      padding: 50px;
+    }
+
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    table.tabla1 {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th, td.tabla2 {
+      padding: 15px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    .icon {
+      padding: 10px;
+      background:grey;
+      color: white;
+      min-width: 50px;
+      text-align: center;
+    }
+    .input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    background-color: rgb(255, 222, 98);
+}
+
+a.menu1:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a.menu2:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a.menu3:hover {
+  color: black;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a.menu4:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.menuromana {
+  background: grey;
+  border-radius: 5px;
+  margin: 0px 0px 10px 0px;
+}
+.menu {
+  background: grey;
+  border-radius: 5px;
+  margin: 0px 0px 5px 0px;
+  padding: 20px;
+}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar" style="background-color:rgb(255, 222, 98);">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-align-justify"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="alarmas"><i class="fa fa-exclamation-triangle"></i> Alarma y avisos</a></li>
+              <li><a href="configuracion"><i class="fa fa-cog"></i> Ajustes y Configuraciones</a></li>
+              <li><a href="gestion-transporte"><i class="fa fa-id-card-o"></i> Gestión de Transportistas</a></li>
+              <li class="divider"></li>
+              <li><a href="logout"><i class="fa fa-sign-out fa-lg"></i> Cerrar sesión</a></li>
+            </ul>
+          </li>
+        <img src = "{{url_for('static', filename = 'img/logo_romana.png')}}" class = 'romana navbar-text' alt = 'Romana'>
+      </ul>
+      <div class="navbar-header">
+        <a class="navbar-brand"></i>PLATAFORMA ROMANA</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <p class="navbar-text" id = "fecha"></p>
+        <script>
+          var d = new Date();
+          var y = d.getFullYear();
+          var m = d.getMonth();
+          var date = d.getDate();
+          const MESES = [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre",
+          ];
+          meses = MESES[m]
+          var fecha = date + " de " +  meses + " de " + y
+          document.getElementById("fecha").innerHTML = fecha;
+        </script>
+        <li><img src = "{{url_for('static', filename = 'img/logo_crp.png')}}" class = 'crp' alt = 'Corimon Pinturas'></li>
+      </ul>
+    </div>
+</nav>
+
+<div class="container-fluid">    
+  <div class="row content">
+    <div class="col-sm-2 text-center">
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading" style="background:grey;">
+            </br>
+            <h4 class="panel-title" style="color:white; height: 40px;">
+            {% if tittle == "romana" or tittle == "hmi" %}
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" style="color:rgb(255, 222, 98);"><i class="fa fa-download fa-lg"></i> ROMANA</a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse in">
+            {% else %}
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" style="color:white;"><i class="fa fa-download fa-lg"></i> ROMANA</a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse">
+            {% endif %}
+            <div class="panel-body" style="background:grey";>
+              <ul class="nav nav-pills nav-stacked">
+              {% if tittle == "romana" %}
+                <li><a href="/romana" class="menu1 menu2 menu3 menu4">SCADA</a></li>
+                <li class="active"><a href="#" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+              {% elif tittle == "hmi" %}
+                <li class = "active"><a href="/romana" class="menu1 menu2 menu3 menu4">SCADA</a></li>
+                <li><a href="#" class=" menu1 menu2 menu3 menu4">REPORTES</a></li>
+              {% else %}
+                <li><a href="/romana" class="menu1 menu2 menu3 menu4">SCADA</a></li>
+                <li><a href="#" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+              {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default menuromana">
+          <div class="panel-heading" style="background:grey;">
+            </br>
+            <h4 class="panel-title" style="color:white; height: 40px;">
+            {% if tittle == "vigilancia" or tittle == "vigilancia_reporte" or tittle == "vigilancia lista" or tittle == "vigilancia cancelar"%}
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" style="color:rgb(255, 222, 98);"><i class="fa fa-eye fa-lg"></i> VIGILANCIA</a>
+            </h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse in">
+            {% else %}
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" style="color:white;"><i class="fa fa-eye fa-lg"></i>
+              VIGILANCIA</a>
+            </h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse">
+            {% endif %}
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked menuromana">
+              {% if tittle == "vigilancia" or tittle ==  "vigilancia lista" %}
+                <li class="active"><a href="/vigilancia-lista" class="active menu1 menu2 menu3 menu4">LISTA DE PASE</a></li>
+                <li><a href="/vigilancia-cancelar" class="active menu1 menu2 menu3 menu4">CANCELAR PASE</a></li>
+                <li><a  href="/vigilancia-reporte" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+              {% elif tittle == "vigilancia_reporte" %}
+                <li><a href="/vigilancia-lista" class="active menu1 menu2 menu3 menu4">LISTA DE PASE</a></li>
+                <li><a href="/vigilancia-cancelar" class="active menu1 menu2 menu3 menu4">CANCELAR PASE</a></li>
+                <li class="active"><a  href="/vigilancia-reporte" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+              {% elif tittle == "vigilancia cancelar" %}
+                <li><a href="/vigilancia-lista" class="active menu1 menu2 menu3 menu4">LISTA DE PASE</a></li>
+                <li class="active"><a href="/vigilancia-cancelar" class="active menu1 menu2 menu3 menu4">CANCELAR PASE</a></li>
+                <li><a  href="/vigilancia-reporte" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+              {% else %}
+                <li><a href="/vigilancia-lista" class="active menu1 menu2 menu3 menu4">LISTA DE PASE</a></li>
+                <li><a href="/vigilancia-cancelar" class="active menu1 menu2 menu3 menu4">CANCELAR PASE</a></li>
+                <li><a  href="/vigilancia-reporte" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+              {% endif %}
+              </ul>
+            </div>
+          </div>  
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="background:grey;">
+            </br>
+            <h4 class="panel-title" style="color:white;height: 40px;">
+            {% if tittle == "distribucion" or tittle == "distribucion-reportes" or tittle == "distribucion lista" or tittle == "preingreso tipo" or tittle == "preingreso vehiculos" or tittle == "preingreso coordinador" or tittle == "distribucion reportes"%}
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" style="color:rgb(255, 222, 98);"><i class="fa fa-truck fa-lg"></i> DISTRIBUCIÓN</a>
+            </h4>
+          </div>
+          <div id="collapse3" class="panel-collapse collapse in">
+            {% else %}
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" style="color:white;"><i class="fa fa-truck fa-lg"></i> DISTRIBUCIÓN</a>
+            </h4>
+          </div>
+          <div id="collapse3" class="panel-collapse collapse">
+            {% endif %}
+            <div class="panel-body" style="background:grey;">
+              <ul class="nav nav-pills nav-stacked menuromana">
+                {% if tittle == "distribucion" or tittle == "distribucion lista" %}
+                <li class = "active"><a href="distribucion-lista" class="active menu1 menu2 menu3 menu4">LISTA DE PASE</a></li>
+                <li><a href="preingreso-tipo" class="active menu1 menu2 menu3 menu4">PREINGRESO</a></li>
+                <li><a href="distribucion-reportes" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+                {% elif tittle == "distribucion reportes" %}
+                <li><a href="distribucion-lista" class="active menu1 menu2 menu3 menu4">LISTA DE PASE</a></li>
+                <li><a href="preingreso-tipo" class="active menu1 menu2 menu3 menu4">PREINGRESO</a></li>
+                <li class = "active"><a href="distribucion-reportes" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+                {% elif tittle == "preingreso" or tittle == "preingreso vehiculos" or tittle == "preingreso tipo" or tittle == "preingreso coordinador" %}
+                <li><a href="distribucion-lista" class="active menu1 menu2 menu3 menu4">LISTA DE PASE</a></li>
+                <li class = "active"><a href="preingreso-tipo" class="active menu1 menu2 menu3 menu4">PREINGRESO</a></li>
+                <li><a href="distribucion-reportes" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+                {% else %}
+                <li><a href="distribucion-lista" class="active menu1 menu2 menu3 menu4">LISTA DE PASE</a></li>
+                <li><a href="preingreso-tipo" class="active menu1 menu2 menu3 menu4">PREINGRESO</a></li>
+                <li><a href="distribucion-reportes" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="background:grey;">
+            </br>
+            <h4 class="panel-title" style="color:white;height: 40px;">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" style="color:white;"><i class="fa fa-cubes fa-lg"></i>  MAT. PRIMA</a>
+            </h4>
+          </div>
+          <div id="collapse4" class="panel-collapse collapse">
+            <div class="panel-body" style="background:grey;">
+              <ul class="nav nav-pills nav-stacked menuromana">
+                <li><a data-toggle="pill" href="#" class="active menu1 menu2 menu3 menu4">CONTROL DE MATERIA</a></li>
+                <li><a data-toggle="pill" href="#" class="active menu1 menu2 menu3 menu4">PRE-INGRESO</a></li>
+                <li><a data-toggle="pill" href="#" class="active menu1 menu2 menu3 menu4">REPORTES</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style="background:grey;">
+            </br>
+            <h4 class="panel-title" style="color:white;height: 40px;">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse5" style="color:white;"><i class="fa fa-check-square fa-lg"></i> OTRAS AREAS</a>
+            </h4>
+          </div>
+          <div id="collapse5" class="panel-collapse collapse">
+            <div class="panel-body" style="background:grey;">
+              <ul class="nav nav-pills nav-stacked menuromana">
+                <li><a data-toggle="pill" href="#" class="active menu1 menu2 menu3 menu4">PLANTA COMPUESTO</a></li>
+                <li><a data-toggle="pill" href="#" class="active menu1 menu2 menu3 menu4">OTROS</a></li>
+                <li><a data-toggle="pill" href="#" class="active menu1 menu2 menu3 menu4">OTROS</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>            
+      </div>
+    </div>
+
+    <div class="col-sm-10">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            {% if category == "error" %}
+              <div class="alert alert-danger alert-dismissible fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>Error! </strong>{{ message }}
+              </div>
+            {% elif category == "warning" %}
+              <div class="alert alert-warning alert-dismissible fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>Alerta! </strong>{{ message }}
+              </div>
+            {% else %}
+              <div class="alert alert-success alert-dismissible fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong>Exito! </strong> {{ message }}
+              </div>
+            {% endif %}
+          {% endfor %}  
+       {% endif %}
+      {% endwith %}
+    </div>
+  {% block contenido %}
+
+  {% endblock %}
+  </div>
+</div>
+
+</body>
+
+</html>

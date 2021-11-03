@@ -1,0 +1,51 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title>Cancelar Preingreso</title>
+{% endblock %}
+{% block contenido %}
+  <div class="col-sm-10">
+    <div class="col-sm-12"> 
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#lista">LISTA DE PASE</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="lista" class="tab-pane fade  in active">
+          <div class="col-sm-12 table-responsive">
+            </br>
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            </br>
+            <div class="list-group" id = "milista">
+              {% for row in rows %}
+                {% if  row[10] == date %}
+                  {% if  row[12] == 0 %}
+                    <a href="cancelar-{{ row[0] }}" class="list-group-item">
+                    <strong> Nombre: </strong>{{ row[1] }} - <strong> Empresa: </strong>{{ row[4] }} - <strong> Tipo: </strong>{{ row[7] }} - <strong> Placa: </strong>{{ row[8] }} - <strong> Telefono: </strong>{{ row[3] }}
+                  {% elif row[12] > 0 and row[12] < 6 %}
+                    <a href="cancelar-{{ row[0] }}" class="list-group-item list-group-item-warning">
+                    <strong> Nombre: </strong>{{ row[1] }} - <strong> Empresa: </strong>{{ row[4] }} - <strong> Tipo: </strong>{{ row[7] }} - <strong> Placa: </strong>{{ row[8] }} - <strong> Telefono: </strong>{{ row[3] }}
+                  {% elif row[12] == 6  %}
+                    <a href="cancelar-{{ row[0] }}" class="list-group-item list-group-item-info">
+                    <strong> Nombre: </strong>{{ row[1] }} - <strong> Empresa: </strong>{{ row[4] }} - <strong> Tipo: </strong>{{ row[7] }} - <strong> Placa: </strong>{{ row[8] }} - <strong> Telefono: </strong>{{ row[3] }}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#milista *").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+{% endblock %}

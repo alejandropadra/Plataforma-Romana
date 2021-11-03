@@ -1,0 +1,109 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title>Control Romana</title>
+  <meta http-equiv="refresh" content="50">
+{% endblock %}
+{% block contenido %}
+  <div class="col-sm-10">
+    <div class="col-sm-12"> 
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#lista">LISTA DE PASE</a></li>
+      <li><a data-toggle="tab" href="#lista-completa">LISTA DE PREINGRESO</a></li>
+      <li><a data-toggle="tab" href="#lista-coordinadores">LISTA DE COORDINADORES Y ACOMPAÑANTES</a></li>
+    </ul>
+</br>
+    <div class="tab-content">
+      <div id="lista" class="tab-pane fade in active">
+        <div class="col-sm-12 table-responsive">
+          <input class="form-control" id="myInput" type="text" placeholder="Search..">
+          </br>
+          <div class="list-group" id = "milistapase">
+            {% for row in lista_preingreso %}
+              {% if date == row[10]  %}
+                {% if  row[12] == 0 %}
+                  <a href="distribucion-{{ row[0] }}" class="list-group-item">
+                  <strong> Nº pase: </strong>{{ row[0] }} -<strong> Nombre: </strong>{{ row[1] }} - <strong> Empresa: </strong>{{ row[4] }} - <strong> Tipo: </strong>{{ row[7] }} - <strong> Placa: </strong>{{ row[8] }} - <strong> Telefono: </strong>{{ row[3] }}
+                {% elif row[12] > 0 and row[12] < 6 %}
+                  <a href="distribucion-{{ row[0] }}" class="list-group-item list-group-item-warning">
+                  <strong> Nº pase: </strong>{{ row[0] }} -<strong> Nombre: </strong>{{ row[1] }} - <strong> Empresa: </strong>{{ row[4] }} - <strong> Tipo: </strong>{{ row[7] }} - <strong> Placa: </strong>{{ row[8] }} - <strong> Telefono: </strong>{{ row[3] }}
+                {% elif row[12] == 6  %}
+                  <a href="distribucion-{{ row[0] }}" class="list-group-item list-group-item-success">
+                  <strong> Nº pase: </strong>{{ row[0] }} -<strong> Nombre: </strong>{{ row[1] }} - <strong> Empresa: </strong>{{ row[4] }} - <strong> Tipo: </strong>{{ row[7] }} - <strong> Placa: </strong>{{ row[8] }} - <strong> Telefono: </strong>{{ row[3] }}
+                {% elif row[12] == 7  %}
+                  <a href="distribucion-{{ row[0] }}" class="list-group-item list-group-item-success">
+                  <strong> Nº pase: </strong>{{ row[0] }} -<i class="fa fa-check"></i><strong> Nombre: </strong>{{ row[1] }} - <strong> Empresa: </strong>{{ row[4] }} - <strong> Tipo: </strong>{{ row[7] }} - <strong> Placa: </strong>{{ row[8] }} - <strong> Telefono: </strong>{{ row[3] }}
+                {% endif %}
+              {% endif %}
+                {% if  row[10] < date %}
+                  {% if  row[12] <= 6 %}
+                    <a href="distribucion-{{ row[0] }}" class="list-group-item list-group-item-danger">
+                    <strong> Nº pase: </strong>{{ row[0] }} -<strong> Nombre: </strong>{{ row[1] }} - <strong> Empresa: </strong>{{ row[4] }} - <strong> Tipo: </strong>{{ row[7] }} - <strong> Placa: </strong>{{ row[8] }} - <strong> Telefono: </strong>{{ row[3] }}
+                  {% endif %}
+                {% endif %}
+            {% endfor %}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div id="lista-completa" class="tab-pane fade">
+        <div class="col-sm-12 table-responsive">
+          <input class="form-control" id="myInputpre" type="text" placeholder="Search..">
+        </br>
+          <div class="list-group" id = "milistapre">
+            {% for row in lista_pase %}
+              {% if date < row[10]  %} 
+                <a href="distribucion" class="list-group-item list-group-item-default">
+                <strong> Nombre: </strong>{{ row[1] }} - <strong> Empresa: </strong>{{ row[4] }} - <strong> Tipo: </strong>{{ row[7] }} - <strong> Placa: </strong>{{ row[8] }} - <strong> Telefono: </strong>{{ row[3] }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div id="lista-coordinadores" class="tab-pane fade">
+        <div class="col-sm-12 table-responsive">
+          <input class="form-control" id="myInputcoor" type="text" placeholder="Search..">
+        </br>
+          <div class="list-group" id = "milistacoor">
+            {% for row in lista_coordinador %}
+              {% if date <= row[8] and date >= row[6] %} 
+                <a href="coordinador-acompañante-{{ row[0] }}" class="list-group-item list-group-item-default">
+                <strong> Cedula: </strong>{{ row[1] }} - <strong> Nombre: </strong>{{ row[2] }} - <strong> Telefono: </strong>{{ row[3] }} - <strong> Transporte: </strong>{{ row[4] }}-  <strong> Rango de acceso: </strong>{{ row[6] }}/{{ row[8] }}/{{ date }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#milistapase *").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+$(document).ready(function(){
+  $("#myInputpre").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#milistapre *").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+$(document).ready(function(){
+  $("#myInputcoor").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#milistacoor *").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+{% endblock %}

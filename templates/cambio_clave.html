@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title>Registro de usuario</title>
+{% endblock %}
+{% block contenido %}
+<div class="col-sm-10">
+    {% from "base/macro.html" import render_field %}
+    <form class="form-group" id= "RegistroForm" method="POST">
+      <div class="row">
+        <div class="col-sm-2 form-group">
+        </div>
+        <div class="col-sm-6 form-group">
+          <div class="bocol-sm-2 well" style="border-radius: 5px;background-color: #f2f2f2;">
+          <h3 style="text-align: center;">CAMBIO DE CONTRASEÑA:</h3>
+          <div class="input-container">
+            <i class="fa fa-key icon"></i>
+            {{ render_field(form.password, class ="form-control",placeholder="Ingrese su contraseña") }}
+            {{ render_field(form.password_repetir, class ="form-control",placeholder="Repita su contraseña") }}
+          </div>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="submit" value="CAMBIAR CONTRASEÑA" class="btn btn-success btn-block">
+          <a href="configuracion" class="btn btn-default" role="button"><i class="fa fa-chevron-left"></i> Regresar</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

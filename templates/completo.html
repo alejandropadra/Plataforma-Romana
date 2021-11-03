@@ -1,0 +1,449 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title>Bootstrap Example</title>
+{% endblock %}
+{% block contenido %}
+<div class="clearfix">
+  <div class="container"><h2>CONTROL DE ENTRADA Y SALIDA DE VEHICULOS A PLANTA</h2></div>
+  <div class="box">
+    <h3>Datos del Conductor</h3>
+    <form class="form-outline" action="/action_page.php">
+      <div class="form-group">
+        <label for="email">Nombre y Apellido: </label>
+        <input type="text" class="form-control" id="email" placeholder="Nombre y Apellido" name="email">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Cedula: </label>
+        <input type="text" class="form-control" id="pwd" placeholder="Cedula del conductor" name="pwd">
+      </div>
+      <div class="form-group">
+        <label for="email">Empresa: </label>
+        <input type="text" class="form-control" id="email" placeholder="Empresa" name="email">
+      </div>
+    </form>
+  </div>
+
+  <div class="box">
+    <h3>Datos del Vehiculo</h3>
+    <form class="form-outline" action="/action_page.php">
+      <div class="form-group">
+        <label for="email">Modelo: </label>
+        <input type="text" class="form-control" id="email" placeholder="Modelo del Vehiculo" name="email">
+      </div>
+      <div class="form-group">
+        <label for="email">Clasificacion: </label>
+        <input list="browsers" name="browser" class="form-control" placeholder="Tipo de vehiculo">
+          <datalist id="browsers">
+            <option value="Particular" class="form-control">
+            <option value="Pick Up" class="form-control">
+            <option value="350" class="form-control">
+            <option value="450" class="form-control">
+            <option value="750" class="form-control">
+            <option value="Toronto" class="form-control">
+          </datalist>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Placa: </label>
+        <input type="password" class="form-control" id="pwd" placeholder="Placa del vehiculo" name="pwd">
+      </div>
+    </form>
+  </div>
+
+  <div class="box">
+    <h3>Titulo</h3>
+    <form class="form-group" action="/action_page.php">
+      <div class="form-group">
+        <label for="email">Nº de pase asignado: </label>
+        <input type="text" class="form-control" id="email" placeholder="Modelo del Vehiculo" name="email">
+      </div>
+      <div class="form-group">
+        <label for="email">Direcccion: </label>
+        <input list="Area planta" name="direccion" class="form-control" placeholder="Tipo de vehiculo">
+          <datalist id="Area planta">
+            <option value="Distribucion" class="form-control">
+            <option value="Materia Prima" class="form-control">
+            <option value="Planta Compuesto" class="form-control">
+            <option value="Otro" class="form-control">
+          </datalist>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Motivo Visita: </label>
+        <input list="Motivo" name="Motivo" class="form-control" placeholder="Tipo de vehiculo">
+          <datalist id="Motivo">
+            <option value="Retiro Producto" class="form-control">
+            <option value="Devolucion" class="form-control">
+            <option value="Retiro y Devolucion" class="form-control">
+            <option value="Mantenimiento" class="form-control">
+            <option value="Mantenimiento" class="form-control">
+          </datalist>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container">
+  <form class="form-group" action="/action_page.php">
+    <div class="form-group">
+      <label for="email">El vehiculo ingresa con: </label>
+      <input type="text" class="form-control" id="email" placeholder="Modelo del Vehiculo" name="email">
+    </div>
+  </form>
+</div>
+
+<div class="clearfix">
+  <div class="container"><h2>CONTROL DE PESAJE LA ROMANA</h2></div>
+  <div class="box">
+    <table style="width:100%">
+      <tr>
+        <th>Hora Llegada</th>
+        <th>PESO 1 KG</th> 
+      </tr>
+      <tr>
+        <td>10:30</td>
+        <td>1500</td>
+      </tr>
+      <tr>
+        <th>Hora Llegada</th>
+        <th>PESO 2 KG</th>
+      </tr>
+      <tr>
+        <td>11:50</td>
+        <td>1800</td>
+      </tr>
+    </table>
+  </div>
+  <div class="box">
+    <table style="width:100%">
+      <tr>
+        <th>DIFERENCIA:</th>
+      </tr>
+      <tr>
+        <td>300</td>
+      </tr>
+      <tr>
+        <th>RECONTEO:</th>
+      </tr>
+      <tr>
+        <td>
+          <form>
+            <input type="radio" name="gender" value="no" checked>No            
+            <input type="radio" name="gender" value="si">Si
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="box">
+    <table style="width:100%">
+      <tr>
+        <th>Hora Llegada</th>
+        <th>Peso 3 KG</th> 
+      </tr>
+      <tr>
+        <td>10:30</td>
+        <td>1500</td>
+      </tr>
+      <tr>
+        <th>Tiempo Total</th>
+      </tr>
+      <tr>
+        <td>1:20</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="clearfix">
+  <div class="container"><h2>CONTROL EN DISTRIBUCION</h2></div>
+  <div class="container"><h4>PREPARACION</h4></div>
+  <div class="box">
+    <table style="width:100%">
+      <tr>
+        <th>Hora Inicio Pistoleo</th>
+        <th>Hora Inicio Pistoleo</th>
+        <th>Tiempo Toltal Pistoleo</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <div class="box">
+    <table style="width:100%">
+      <tr>
+        <th>Hora Inicio Auditor:</th>
+        <th>Hora Fin Auditor:</th>
+        <th>Tiempo Total Auditor:</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <div class="box">
+    <table style="width:100%">
+      <tr>
+        <th>Hora Inicio Carga</th>
+        <th>Hora Final Carga</th>
+        <th>Tiempo Total Carga</th> 
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="clearfix">
+  <div class="box">
+    <form class="form" action="/action_page.php">
+      <div class="form-group">
+        <label for="email">Auditor: </label>
+        <input type="text" class="form-control" id="email" placeholder="Nombre y Apellido" name="email">
+      </div>
+      <br>
+      <div class="form-inline">
+        <label for="email">Jaula: </label>
+        <select name="cars" class="form-control">
+          <option value="fiat"></option>
+          <option value="fiat">RxP</option>
+          <option value="volvo">1</option>
+          <option value="saab">2</option>
+          <option value="saab">3</option>
+          <option value="saab">4</option>
+          <option value="saab">5</option>
+          <option value="saab">6</option>
+          <option value="saab">7</option>
+          <option value="saab">8</option>
+          <option value="saab">9</option>
+          <option value="saab">10</option>
+          <option value="saab">11</option>
+        </select>
+
+        <label for="pwd">Pistoleado:</br></label>
+        <input type="radio" class="form-control" id="pwd" placeholder="Cedula del conductor" name="pwd">Sí
+        <input type="radio" class="form-control" id="pwd" placeholder="Cedula del conductor" name="pwd">No
+      </div>
+    </form>
+  </div>
+
+  <div class="box">
+    <form class="form-outline" action="/action_page.php">
+      <div class="form-group">
+        <label for="email">Cordinador de Transporte: </label>
+        <input type="text" class="form-control" id="email" placeholder="Nombre y Apellido" name="email">
+      </div>
+      <div class="form-group">
+        <label for="email">Transporte: </label>
+        <input type="text" name="browser" class="form-control" placeholder="Transporte encargado">
+      </div>
+    </form>
+  </div>
+
+  <div class="box">
+    <form class="form-group" action="/action_page.php">
+      <label for="email">Conteo: </label>
+      <div class="form-inline">
+        <select name="cars" class="form-control">
+          <option value="volvo">Sobra</option>
+          <option value="saab">Falta</option>
+          <option value="fiat">N / A</option>
+        </select>
+        <input Type="number" name="direccion" class="form-control" placeholder="Numeros Bultos">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="email">Precinto: </label>
+        <input Text="Area planta" name="direccion" class="form-control" placeholder="Serial Precinto">
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div class="clearfix">
+  <div class="container"><h4>PROCESO DE CARGA</h4></div>
+  <div class="box">
+    <table style="width:100%">
+      <tr>
+        <th>Hora Inicio Carga</th>
+        <th>Hora Final Carga</th>
+        <th>Tiempo Toltal Carga</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <div class="box">
+    <table style="width:100%">
+      <tr>
+        <th>Reconteo:</th>
+      </tr>
+      <tr>
+        <td>si no</td>
+      </tr>
+    </table>
+  </div>
+  <div class="box">
+    <table style="width:100%">
+      <tr>
+        <th>Hora Inicio Reconteo</th>
+        <th>Hora Final Reconteo</th>
+        <th>Tiempo Total Reconteo</th> 
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="container">
+  <div class="container"><h4>CONTENIDO DE LA CARGA</h4></div>
+  <table style="width:100%">
+    <tr>
+      <th>Material</th>
+      <th>Cuñetes</th>
+      <th>Cajas/Gal</th>
+      <th>Cajas/Qtos</th>
+      <th>Otros</th>
+      <th>Diferencia</th>
+      <th>TOTAL</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+      <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+      <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+<div class="container">
+  <form class="form-group" action="/action_page.php">
+    <div class="form-group">
+      <label for="email">Observaciones: </label>
+      <input type="text" class="form-control" id="email" placeholder="Modelo del Vehiculo" name="email">
+    </div>
+  </form>
+</div>
+
+<div class="clearfix">
+  <div class="container"><h2>CONTROL DE MATERIA PRIMA</h2></div>
+  <div class="container">
+    <div class="container"><h4>MATERIAL</h4></div>
+    <table style="width:100%">
+      <tr>
+        <th>Factura</th>
+        <th>Proveedor</th>
+        <th>Denominación</th>
+        <th>lote Proveedor</th>
+        <th>Cant Segun fact</th>
+        <th>Cant Descargada</th>
+        <th>Fecha Fabricacion</th>
+        <th>Tipo Material</th>
+        <th>Codigo (Material)</th>
+        <th>Tanque</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  
+  <div class="box">
+    <div class="container"><h4>RESPONSABLES</h4></div>
+    <table style="width:100%">
+      <tr>
+        <th>Operador</th>
+        <td>asdasasdasdasdsa</td>
+      </tr>
+      <tr>
+        <th>Supervisor</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>analista C.C</th>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <div class="box">
+    <div class="container"><h4>Tiempos de proceso</h4></div>
+    <table style="width:100%">
+      <tr>
+        <th>Hora Llegada</th>
+        <th>Hora Inicio</th>
+        <th>Tiempo Final</th> 
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>Hora Inicio</th>
+        <th>Hora Final</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>      
+    </table>
+  </div>
+  <div class="box">
+    <div class="container"><h4>Observaciones</h4></div>
+    <textarea name="message" rows="7" cols="40">
+    </textarea>
+    </div>
+</div>
+{% endblock %}

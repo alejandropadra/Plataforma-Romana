@@ -1,0 +1,195 @@
+{% extends "base/base.html" %}
+{% block titulo %}
+  <title>Control Distribucion</title>
+{% endblock %}
+{% block contenido %}
+  <div class="col-sm-10">
+    <button type="button" data-toggle="collapse" data-target="#status" class="btn btn-block" style="color:grey;">Estatus Romana</button>
+    <div id="status" class="collapse">
+      <div class="tab-content">
+        <div class="col-sm-2 well">
+          <p>Nº Pase: 0000000</p>
+          <p>Peso Guia:</p>
+          <p>0.000 KG</p>
+          <p>xxxxxxxx</p>
+        </div>
+        <div class="col-sm-10">
+          <table style="width:100%;border-collapse: separate;border-spacing: 10px ;border: none;" class = "tabla1">
+            <tr>
+              <th colspan ="2" style="border: none;padding: 4px;" class = "tabla2">PESO TARA</th>
+              <th colspan ="2" style="border: none;padding: 4px;" class = "tabla2">PESO BRUTO</th>
+              <th colspan ="2" style="border: none;padding: 4px;" class = "tabla2"></th>
+              <th colspan ="2" style="border: none;padding: 4px;" class = "tabla2">PESO RECONTEO</th>
+            </tr>
+            <tr style = "background-color: #f2f2f2;">
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">HORA</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">00:00</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">HORA</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">00:00</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">PESO NETO</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">0000</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">HORA</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">00:00</td>
+            </tr>
+            <tr style = "background-color: #f2f2f2">
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">PESO (KG)</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">0000</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">PESO (KG)</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">0000</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">DIF.</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">00,00</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">PESO (KG)</td>
+              <td style="border-radius: 25px;padding: 4px;width: 80px;" class = "tabla2">00000</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    </br> 
+    </br>
+    <div class="col-sm-12"> 
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#Cliente">CLIENTE</a></li>
+      <li><a data-toggle="tab" href="#Preparacion">PROCESO DISTRIBUCION</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="Cliente" class="tab-pane fade in active">
+      {% from "base/macro.html" import render_field %}
+        <form class="form-group" method="POST">
+          <div class="col-sm-4">
+            <h3>Datos del Conductor</h3>
+              {% for row in row %}
+            <div class="form-group">
+              {{ render_field(form.cedula, class ="form-control",placeholder="Nombre y Apellido", disabled= disabled, value = row[2]) }}
+            </div>
+            <div class="form-group">
+              {{ render_field(form.nombre_apellido, class ="form-control", placeholder="Cedula del conductor",disabled= disabled, value = row[1]) }}
+            </div>
+            <div class="form-group">
+              {{ render_field(form.telefono, class ="form-control", placeholder="Numero Telefonico", disabled= disabled,value = row [3] )}}
+            </div>
+            <div class="form-group">
+              {{ render_field(form.empresa, class ="form-control", placeholder="Empresa", disabled= disabled, value = row[4]) }}
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h3>Datos del Vehiculo</h3>
+            <div class="form-group">
+              {{ render_field(form.placa, class="form-control", placeholder="Placa del vehiculo", disabled= disabled, value = row[8]) }}
+            </div>
+            <div class="form-group">
+              {{ render_field(form.marca, class="form-control", placeholder="Marca del vehiculo", disabled= disabled,value = row [5]) }}
+            </div>
+            <div class="form-group">
+              {{ render_field(form.modelo, class ="form-control", placeholder="Modelo del Vehiculo", disabled= disabled, value = row[6]) }}
+            </div>
+            <div class="form-group">
+              {{ render_field(form.clasificacion, class="form-control", placeholder="Tipo de vehiculo", disabled= disabled, value = row[7]) }}
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h3>Titulo</h3>
+            <div class="form-group">
+              {{ render_field(form.num_transporte, class="form-control", placeholder="Modelo del Vehiculo...", readonly = readonly, value = row[0]) }}
+            </div>
+            <div class="form-group">
+              {{ render_field(form.peso_transporte, class="form-control", placeholder="Peso Guia", disabled= disabled, value = row[11]) }}
+            </div>
+            <div class="form-group">
+              {{ render_field(form.motivo, class="form-control", placeholder="Motivo visita...", disabled = disabled, value = row[9]) }}
+            </div>
+            {% endfor %}
+            {% for row in row_proceso %}
+            <div class="form-group">
+              {{ render_field(form.direccion, class="form-control", readonly = readonly, value = row[1]) }}
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-8">
+                <div class="form-group">
+                  {% set f = form.ingresa_con.process_data(value = row[2]) %}
+                  {{ render_field(form.ingresa_con, class="form-control", readonly = readonly) }}
+                </div>
+              </div>
+              <div class="col-sm-4">
+                {{ render_field(form.num_pase, class="form-control", placeholder="", readonly = readonly, value = row[3]) }}
+              </div>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <a href="vigilancia-lista" class="btn btn-default" role="button"><i class="fa fa-chevron-left"></i> Regresar</a>
+              </div>
+              <div class="col-sm-5">
+              </div>
+              <div class="col-sm-4">
+              </div>
+            </div>
+      </div>
+      <div id="Preparacion" class="tab-pane fade">
+          <div class="row">
+            <div class="col-sm-4">
+              </br>
+              <h4>Carga del vehiculo</h4>
+              {% if row[4] == False or row[4] == None %}
+                {{ render_field(form3.carga) }}
+                {{ render_field(form3.usuario_carga, class="form-control", readonly = readonly, value = user_date[0]) }}
+                {{ render_field(form3.date_carga, class="form-control", readonly = readonly, value = user_date[1]) }}
+              {% else %}
+                {{ render_field(form3.carga, checked = "") }}
+                {{ render_field(form3.usuario_carga, class="form-control", readonly = readonly, value = row[8]) }}
+                {{ render_field(form3.date_carga, class="form-control", readonly = readonly, value = row[9]) }}
+              {% endif %}
+            </div>
+            <div class="col-sm-4">
+            </br>
+              <h4>Verificar o reconteo de carga</h4>
+              {% if row[4] == False or row[4] == None %}
+                {{ render_field(form3.verificar) }}
+                {{ render_field(form3.reconteo) }}
+                {{ render_field(form3.usuario_verifica, readonly = readonly, class="form-control") }}
+                {{ render_field(form3.date_verifica, readonly = readonly, class="form-control") }}
+              {% elif  row[4] == True and (row[5] == None or row[5] == False) and (row[6] == None or row[6] == False) %}
+                {{ render_field(form3.verificar) }}
+                {{ render_field(form3.reconteo) }}
+                {{ render_field(form3.usuario_verifica, readonly = readonly, class="form-control", value = user_date[0]) }}
+                {{ render_field(form3.date_verifica, readonly = readonly, class="form-control", value = user_date[1]) }}
+              {% else %}
+                {% if row[5] == True and (row[6] == None or row[6] == False) %}
+                  {{ render_field(form3.verificar, checked = "") }}
+                  {{ render_field(form3.reconteo, disabled = disabled) }}
+                {% elif row[6] == True and (row[5] == None or row[5] == False) %}
+                  {{ render_field(form3.verificar, disabled = disabled) }}
+                  {{ render_field(form3.reconteo, checked = "") }}
+                {% endif %}
+                {{ render_field(form3.usuario_verifica, class="form-control", readonly = readonly, value = row[10]) }}
+                {{ render_field(form3.date_verifica, class="form-control", readonly = readonly, value = row[11]) }}
+              {% endif %}
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <a href="distribucion-lista" class="btn btn-default" role="button"><i class="fa fa-chevron-left"></i> Regresar</a>
+              </div>
+              <div class="col-sm-4">
+              {% if row[7] < 6  %}
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="submit" value="ENVIAR" class="btn btn-success btn-block">
+              {% endif %}
+              </div>
+              <div class="col-sm-4">
+
+              </div>
+            {% endfor %}
+
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+{% endblock %}
