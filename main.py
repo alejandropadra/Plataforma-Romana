@@ -727,23 +727,6 @@ def serialize(nombre, placa, transporte, area, capacidad, peso):
     'peso': peso
   }
 
-@app.route("/arduino/", methods = ["GET"])
-@csrf.exempt
-def get_arduino():
-	json = request.get_json(force=True)
-
-	if json.get('dato') is None:
-		return bad_request()
-
-	tarea = (json['dato'])
-	return response(tarea)
-
-@app.route("/prueba/<int:n>", methods = ["GET","POST"])
-def prueba(n):
-	numero = n
-	for n in range(10):
-		num = n + 1
-	return render_template("prueba.html", numero = numero, num = num)
 
 if __name__ == "__main__":
 	#url_web = 'Corimon.pinturas.produccion.com:8000'
