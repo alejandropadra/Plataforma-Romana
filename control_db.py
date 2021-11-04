@@ -165,6 +165,12 @@ def sentenciasSQL(titulo):
 		SET status = ?
 		WHERE numguia = ?"""
 		database = lista_pase_db
+	elif titulo == "proceso distribucion num pase":
+		sql = """
+		UPDATE preingresodis
+		SET num_pase = ?
+		WHERE numguia = ?"""
+		database = lista_pase_db
 	elif titulo == "registro vehiculo editar":
 		sql = """
 		UPDATE vehiculos
@@ -249,7 +255,7 @@ def sentenciasSQL(titulo):
 		database = procesos
 	elif titulo == "romana":
 		sql = """
-		SELECT numguia, cedula, nombre, empresa, clasificacion, placa, motivo, pesoguia, status FROM preingresodis WHERE fecha = date('now')
+		SELECT num_pase, cedula, nombre, empresa, clasificacion, placa, motivo, pesoguia, status FROM preingresodis WHERE fecha = date('now')
 		"""
 		database = lista_pase_db
 	elif titulo == "conductor delete":
@@ -273,19 +279,19 @@ def sentenciasSQL(titulo):
 		database = procesos
 	elif titulo == "romana peso":
 		sql ="""
-		INSERT INTO romana(id, peso_bruto, peso_tara, peso_neto, num_pase)
-		values(?,?,?,?,?)"""
+		INSERT INTO romana(peso_bruto, peso_tara, peso_neto, num_pase)
+		values(?,?,?,?)"""
 		database = procesos
 	elif titulo == "romana peso 3":
 		sql = """
 		UPDATE romana
-		SET peso_tara = ?, peso_neto = ?
+		SET peso_bruto = ?, peso_neto = ?
 		WHERE num_pase = ?
 		"""
 		database = procesos
 	elif titulo == "seleccionar":
 		sql = """
-		SELECT * FROM distribucion WHERE num_pase = ?
+		SELECT numguia FROM distribucion WHERE num_pase = ?
 		"""
 		database = procesos
 	elif titulo == "act status":

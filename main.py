@@ -211,6 +211,7 @@ def vigilancia(n):
 			success_message = "Proceso numero de pase: " + str(pase) + " finalizado, numero de guia: " + str(guia) + " ha salido de planta!"
 		else:
 			control_db.insertar_datos(argumentos,tittle+" ingreso")
+			control_db.update((pase,guia),"proceso distribucion num pase")
 			success_message = "Se ha registrado!"
 		control_db.update((estado,guia),"proceso distribucion")
 		flash(success_message)
@@ -691,18 +692,20 @@ def crear_tarea():
 	if json.get('estatus') is None:
 		return bad_request()
 
-	tarea = (json['txn'], json['peso_bruto'], json['peso_tara'], json['peso_neto'], json['num_pase'])
+	tarea = (json['peso_bruto'], json['peso_tara'], json['peso_neto'], json['num_pase'])
 	status = json['estatus']
 	pase = json['num_pase']
-	peso2 = (json['peso_tara'], json['peso_neto'], json['num_pase'])
-	print(tarea,"status:",json['estatus'])
+	peso2 = (json['peso_bruto'], json['peso_neto'], json['num_pase'])
+	print(tarea)
 	#try:
 	if status == '2':
 		control_db.insertar_datos(tarea, "romana peso")
 		control_db.update((status, pase), "romana peso 2")
 		num_guia = control_db.seleccionar_fila(pase, "seleccionar")
 		num_guia = num_guia.fetchone()
+		print(num_guia)
 		num_guia = num_guia[0]
+		print(num_guia)
 		control_db.update((status,num_guia), "act status")
 		return response(tarea)
 	elif status == '4':

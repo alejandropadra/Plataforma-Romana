@@ -9,7 +9,7 @@ consulta= conexion.cursor()
 #
 sql= """
 CREATE TABLE IF NOT EXISTS romana(
-id INTEGER PRIMARY KEY NOT NULL,
+id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 peso_bruto INTEGER,
 peso_tara INTEGER,
 peso_neto INTEGER,
